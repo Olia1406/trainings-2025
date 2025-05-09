@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
+import { Course } from '../../models/course.model';
+import { MatDialog } from '@angular/material/dialog';
+import { openEditCourseDialog } from '../edit-course-dialog/edit-course-dialog.component';
+
 
 @Component({
   selector: 'app-courses-card-list',
@@ -8,5 +12,27 @@ import { Component } from '@angular/core';
   styleUrl: './courses-card-list.component.scss'
 })
 export class CoursesCardListComponent {
+
+  courses = input.required<Course[]>();
+
+  courseUpdated = output<Course>();
+  courseDeleted = output<string>();
+
+  dialog = inject(MatDialog);
+
+  async onEditCourse(course: Course) {
+    const newCourse = await openEditCourseDialog(this.dialog, {
+      mode: 'update',
+      title: 'Update Existing Course',
+      course
+    })
+
+    console.log('Course edited:', newCourse);
+    this.courseUpdated.emit(newCourse);
+  }
+
+  onDeleteCourse(course: Course) {
+    this.courseDeleted.emit(course.id);
+  }
 
 }
