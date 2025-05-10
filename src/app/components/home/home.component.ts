@@ -6,6 +6,7 @@ import { CoursesService } from '../../services/courses.service';
 import { CoursesServiceWithFetch } from '../../services/courses-fetch.service';
 import { openEditCourseDialog } from '../edit-course-dialog/edit-course-dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { LoadingService } from '../loading/loading.service';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,7 @@ export class HomeComponent {
   advancedCourses = computed(() => this.#courses().filter(course => course.category === 'ADVANCED'));
 
   coursesService = inject(CoursesService);
+  loadingService = inject(LoadingService);
 
   dialog = inject(MatDialog);
 
