@@ -3,10 +3,9 @@ import { MatTab, MatTabGroup } from "@angular/material/tabs";
 import { CoursesCardListComponent } from "../courses-card-list/courses-card-list.component";
 import { Course, sortCoursesBySeqNo } from '../../models/course.model';
 import { CoursesService } from '../../services/courses.service';
-import { CoursesServiceWithFetch } from '../../services/courses-fetch.service';
 import { openEditCourseDialog } from '../edit-course-dialog/edit-course-dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { LoadingService } from '../loading/loading.service';
+import { MessagesService } from '../messages/messages.service';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +25,7 @@ export class HomeComponent {
   advancedCourses = computed(() => this.#courses().filter(course => course.category === 'ADVANCED'));
 
   coursesService = inject(CoursesService);
-  loadingService = inject(LoadingService);
+  messagesService = inject(MessagesService);
 
   dialog = inject(MatDialog);
 
@@ -42,6 +41,8 @@ export class HomeComponent {
       this.#courses.set(courses.sort(sortCoursesBySeqNo));
     }
     catch (error) {
+      this.messagesService.showMessage("Error loading courses", "error");
+      // Optionally, you can log the error to the console or handle it in a different way
       console.error("Error loading courses", error);
     }
   }

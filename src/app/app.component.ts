@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import {MatSidenav, MatSidenavContainer} from "@angular/material/sidenav";
 import {MatListItem, MatNavList} from "@angular/material/list";
@@ -7,6 +7,7 @@ import {MatToolbar} from "@angular/material/toolbar";
 import {MatIconButton} from "@angular/material/button";
 import {LoadingComponent} from "./components/loading/loading.component";
 import { MessagesComponent } from './components/messages/messages.component';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -20,4 +21,12 @@ import { MessagesComponent } from './components/messages/messages.component';
 })
 export class AppComponent {
   title = 'angular-training-25';
+
+  authService = inject(AuthService);
+
+  isLoggedIn = this.authService.isLoggedIn;
+
+  onLogout() {
+    this.authService.logout();
+  }
 }
