@@ -27,6 +27,13 @@ export class CoursesService {
     return response.courses;
   }
 
+  async getCourseById(courseId: string): Promise<Course | null> {
+    const course$ = this.http
+      .get<Course>(`${this.apiUrl}/${courseId}`);
+
+    return firstValueFrom(course$)
+  }
+
   async createCourse(course: Partial<Course>): Promise<Course> {
     const course$ = this.http
       .post<Course>(this.apiUrl, course);

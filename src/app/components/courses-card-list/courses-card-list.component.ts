@@ -2,12 +2,13 @@ import { Component, inject, input, output } from '@angular/core';
 import { Course } from '../../models/course.model';
 import { MatDialog } from '@angular/material/dialog';
 import { openEditCourseDialog } from '../edit-course-dialog/edit-course-dialog.component';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-courses-card-list',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './courses-card-list.component.html',
   styleUrl: './courses-card-list.component.scss'
 })

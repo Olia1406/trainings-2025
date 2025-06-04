@@ -33,6 +33,6 @@ export function getCourseById(req: Request, res: Response) {
     const course = courses.find((course: any) => course.id == courseId);
 
     res.status(200).json(course);
-  })
+  }, 1000);
 
 }
