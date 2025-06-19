@@ -5,6 +5,7 @@ import { isUserAuthenticated } from './guards/auth.guard';
 import { CourseComponent } from './components/course/course.component';
 import { courseResolver } from './components/course/course-resolver';
 import { courseLessonsResolver } from './components/course/course-lessons-resolver';
+import { LessonsComponent } from './components/lessons/lessons.component';
 
 
 export const routes: Routes = [
@@ -17,10 +18,10 @@ export const routes: Routes = [
     path: "login",
     component: LoginComponent
   },
-  // {
-  //   path: "lessons",
-  //   component: LessonsComponent
-  // },
+  {
+    path: "lessons",
+    component: LessonsComponent
+  },
   // {
   //   path:"shopping-cart",
   //   component: LinkedSignalDemoComponent
