@@ -6,14 +6,25 @@
     Add Course
   </button>
 
+  <button class="btn" (click)="onToObservableExample()">
+    toObservable
+  </button>
+
+  <button class="btn" (click)="onToSignalExample()">
+    toSignal
+  </button>
+
+
   <mat-tab-group>
 
     <mat-tab label="Beginners">
-      <app-courses-card-list [courses]="begginerCourses()" (courseUpdated)="onCourseUpdate($event)" (courseDeleted)="onCourseDelete($event)" />
+      <app-courses-card-list [courses]="begginerCourses()" (courseUpdated)="onCourseUpdate($event)"
+        (courseDeleted)="onCourseDelete($event)" />
     </mat-tab>
 
     <mat-tab label="Advanced">
-      <app-courses-card-list [courses]="advancedCourses()" (courseUpdated)="onCourseUpdate($event)" (courseDeleted)="onCourseDelete($event)" />
+      <app-courses-card-list [courses]="advancedCourses()" (courseUpdated)="onCourseUpdate($event)"
+        (courseDeleted)="onCourseDelete($event)" />
 
     </mat-tab>
 
